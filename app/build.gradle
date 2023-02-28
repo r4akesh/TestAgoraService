@@ -1,0 +1,109 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    //   apply plugin: 'kotlin-kapt'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+   id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.testmyapplication"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+    }
+
+    buildTypes {
+        release {
+            // Enables code shrinking, obfuscation, and optimization for only
+            // your project's release build type.
+            minifyEnabled true
+
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources true
+
+
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    def roomVersion = "2.4.3"
+    def lifecycleVersion = "2.5.1"
+    def coroutinesVersion = '1.6.4'
+    def work_version = "2.7.1"
+    //def retrofitVersion = '2.9.0'
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+
+    //room
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+   // implementation "androidx.room:room-runtime:$room_version"
+   // implementation "androidx.room:room-common:$room_version"
+//    implementation "androidx.room:room-ktx:$room_version"
+
+    //lifecycle
+   // implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+
+    // Kotlin Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    //retrofit
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    //workmanager
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+
+    //implementation 'io.agora.rtc:full-sdk:4.1.0'
+    implementation 'io.agora.rtc:full-sdk:3.7.0.1'
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
+    //retrofit
+    implementation "com.squareup.okhttp3:okhttp:4.7.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    implementation "com.squareup.retrofit2:converter-moshi:2.6.2"
+
+}
